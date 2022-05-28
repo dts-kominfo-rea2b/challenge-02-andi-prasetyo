@@ -20,22 +20,25 @@ function lakukanLooping(arrPegawai) {
   /*
     TODO 1: Buatlah sebuah variabel bernama "hasilLooping" 
       yang berisi gabungan nama depan dan belakang dari masing masing pegawai
-
       Contoh: ["Aisyah Nirmala", "Mansur Faisal", ...]
   */
-  let hasilLooping = null;
+  let hasilLooping = [];
+
+  for(let i = 0; i < arrPegawai.length; i++) {
+    hasilLooping.push(dataYangAkanDilooping[i].namaDepan + " " + (dataYangAkanDilooping[i].namaBelakang))
+  }
 
   /*
     TODO 2: Buatlah sebuah variabel bernama "jumlahPria"
       yang berisi jumlah pria dari masing masing pegawai
   */
-  let jumlahPria = null;
+  let jumlahPria = dataYangAkanDilooping.filter(d => d.jenisKelamin == 'M').length
 
   /*
     TODO 3: Buatlah sebuah variabel bernama "jumlahWanita"
       yang berisi jumlah wanita dari masing masing pegawai
   */
-  let jumlahWanita = null;
+  let jumlahWanita = dataYangAkanDilooping.filter(d => d.jenisKelamin == 'F').length
 
   /*
     TODO 4: Buatlah sebuah variabel bernama "komentar"
@@ -48,7 +51,14 @@ function lakukanLooping(arrPegawai) {
       Apabila imbang, maka komentar akan berisi:
         "Jumlah Pria dan Wanita berimbang"
   */
-  let komentar = null;
+  let komentar = '';
+
+  if (jumlahPria > jumlahWanita) 
+    komentar =  "Jumlah Pria lebih banyak dari Wanita"
+  else if (jumlahPria < jumlahWanita) 
+    komentar =  "Jumlah Wanita lebih banyak dari Pria"
+  else 
+    komentar = "Jumlah Pria dan Wanita berimbang"
 
   // ! JANGAN DIMODIFIKASI
   return {
@@ -63,9 +73,9 @@ function main(data) {
   const hasil = lakukanLooping(data || arrayObjectPegawai);
 
   console.log(hasil.hasilLooping);
-  console.log(hasil.jumlahPria);
-  console.log(hasil.jumlahWanita);
-
+  console.log("Jumlah Pria:", hasil.jumlahPria);
+  console.log("Jumlah Wanita:", hasil.jumlahWanita);
+  console.log("Kesimpulan:", hasil.komentar);
   return hasil;
 }
 
